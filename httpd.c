@@ -500,6 +500,28 @@ void serve_file(int client, const char *filename)
 //启动服务端
 int startup(u_short *port)
 {
+
+//服务器处理步骤
+/*
+第一步：创建端口号，使用函数int socketid = socket(family, type, protocol);;
+第二步：将地址结构体绑定在端口号上，使用函数int bind(int fd, const struct sockaddr *, socklen_t);
+第三步：循环监听客户端请求，使用函数listen(sockfd, 5);（第一个参数是 socket 描述符，第二个参数是最大连接数）
+
+第四步：接受客户端的请求，new_socket = accept(socket_desc, (struct sockaddr *)&client, (socklen_t*)&c);
+第五步：使用read()/write()进行数据交换
+第六步：关闭连接，使用close(socketid);
+*/
+
+
+//客户端处理步骤
+/*
+第一步：创建端口号，使用函数int socketid = socket(family, type, protocol);
+第二步：将地址结构体绑定在端口号上，使用函数int bind(int fd, const struct sockaddr *, socklen_t);
+第三步：请求连接，使用函数int connect(int socket, const struct sockaddr* address, size_t address_len)；
+
+第四步：使用read()/write()进行数据交换；
+第五步：关闭连接，使用close(socketid);
+*/
  int httpd = 0;
  struct sockaddr_in name;
 //设置http socket
@@ -507,9 +529,13 @@ int startup(u_short *port)
  if (httpd == -1)
   error_die("socket");
  memset(&name, 0, sizeof(name));
+
+ //创建地址结构体struct sockaddr_in，主要包含地址和端口号
  name.sin_family = AF_INET;
  name.sin_port = htons(*port);
  name.sin_addr.s_addr = htonl(INADDR_ANY);
+
+
  //绑定端口
  if (bind(httpd, (struct sockaddr *)&name, sizeof(name)) < 0)
   error_die("bind");
