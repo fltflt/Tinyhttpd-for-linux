@@ -1,6 +1,6 @@
 # 小型Webserver Tinyhttpd 学习记录
 
-## 简介： Tinyhttpd 是J. David Blackstone在1999年写的一个不到 500 行的超轻量型 Http Server，用来学习非常不错，可以帮助我们真正理解服务器程序的本质。
+简介： Tinyhttpd 是J. David Blackstone在1999年写的一个不到 500 行的超轻量型 Http Server，用来学习非常不错，可以帮助我们真正理解服务器程序的本质。
 
 # 参考资料
 
